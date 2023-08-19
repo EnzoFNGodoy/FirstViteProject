@@ -3,6 +3,7 @@ import Comment from '../Comment/Comment.tsx';
 import Avatar from '../Avatar/Avatar.tsx';
 import Post from '../../models/Post.tsx';
 import { formatDate, formatTimeDifference } from '../../helpers/DateHandler.tsx';
+import React from 'react';
 
 export interface PostItemProps {
     post: Post;
@@ -36,7 +37,17 @@ const PostItem = (props: PostItemProps) => {
             </header>
 
             <div className={styles.content}>
-                <p>{post.content}</p>
+                {post.content.map(content => {
+                    if (content.type === 'paragraph')
+                        return <p>{content.content}</p>
+                    else if (content.type === 'link')
+                    return (
+                        <React.Fragment key={content.id}>
+                            <br />
+                            <a href='#'>{content.content}</a>
+                        </React.Fragment>
+                    );
+                })}
             </div>
 
             <form className={styles.commentForm}>

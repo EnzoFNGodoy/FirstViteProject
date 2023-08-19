@@ -6,6 +6,7 @@ const Header = () => {
     return (
         <header className={styles.header}>
             <img src={igniteLogo} alt="Logotipo do Feed"/>
+            <h3>Godoy Feed</h3>
         </header>
     );
 }
